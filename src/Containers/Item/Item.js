@@ -26,7 +26,7 @@ class Item extends Component {
         var itemStats = Object.keys(this.state.item).map(
             key => {
                 if (key !== 'text')
-                    return <div key={key}><strong>{key}:</strong> {this.state.item[key]}</div>
+                    return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.item[key]}</div>
             }
         )
 

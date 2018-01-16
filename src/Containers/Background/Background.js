@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import PrettyObj from '../../Components/PrettyObj'
 import Compendium from '../../Helpers/Compendium'
+import PrettyObj from '../../Components/PrettyObj'
+import ThingText from '../../Components/ThingText'
 
 class Background extends Component {
     constructor(props){
@@ -20,11 +21,24 @@ class Background extends Component {
     }
 
     render() {
+        
+        var traitText = null;
+        if (Array.isArray(this.state.background.trait)){
+            traitText = this.state.background.trait.map(aTrait => {
+                return <div>
+                        <h4>{aTrait.name}:</h4>
+                        <ThingText text={aTrait.text}></ThingText>
+                    </div>
+            })
+        }
 
         return ( 
-            <div className="Background">
-                <h1>{this.state.background.name}</h1>
-                <PrettyObj {...this.state.background}></PrettyObj>
+            <div className='container'>
+                <div className="Background">
+                    <h1>{this.state.background.name}</h1>
+                    {traitText}
+                    <PrettyObj {...this.state.background}></PrettyObj>
+                </div>
             </div>
         );
     }

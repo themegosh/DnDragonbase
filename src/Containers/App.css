@@ -36,3 +36,6 @@ pre {
 
 .padding-10 {
   padding: 10px; }
+
+.thing-summary-name {
+  text-transform: capitalize; }
