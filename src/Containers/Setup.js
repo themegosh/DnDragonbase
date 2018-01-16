@@ -6,20 +6,21 @@ class Setup extends Component {
     constructor() {
         super();
         this.state = {
-            txtSourceUrl: 'CorePlusUnearthedArcana.xml',
-            isCompendiumSet: false
+            txtSourceUrl: 'http://rhizophagous-experi.000webhostapp.com/something.php',
+            isCompendiumSet: false,
+            loading: false
         };
     }
 
     handleSetSource = (event) => {
         console.log('setSource');
-
+        this.setState({loading: true});
         Compendium
             .SetSource(this.state.txtSourceUrl)
             .then(results => {
                 console.log('callback from service');
 
-                this.setState({isCompendiumSet: true});
+                this.setState({isCompendiumSet: true, loading: false});
             });
         event.preventDefault();
     }
@@ -37,6 +38,12 @@ class Setup extends Component {
     }
 
     render() {
+
+        let loadingInfo = null;
+        if (this.state.loading){
+            loadingInfo = <h2 className='text-center'>Loading...</h2>
+        } 
+
         return (
             <div className="Setup container">
 
@@ -53,7 +60,7 @@ class Setup extends Component {
                             onChange={this.handleUrlChange}
                             className='form-control'/>
                     </div>
-
+                    {loadingInfo}                    
                     <input type="submit" value="Submit" className='btn btn-success'/>
                     <button onClick={this.btnResetAll} className='btn btn-warning'>Reset All</button>
                 </form>

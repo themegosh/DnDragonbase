@@ -20,7 +20,9 @@ class Compendium {
 
     SetSource(url) {
         var self = this;
-        return fetch(url)
+        return fetch(url, {
+            mode: 'cors'
+        })
             .then(response => response.text())
             .then(str => {
                 var tree = new XmlToJs()
