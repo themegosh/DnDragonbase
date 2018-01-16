@@ -1,0 +1,31 @@
+.search-box {
+    display: block;
+
+    .search-results-summary {
+        padding: 10px;
+
+        span {
+            padding: 5px;
+            display: inline-block;
+        }
+    }
+
+    .search-result {
+        display: block;
+        border-bottom: 1px solid #999;
+
+        &:last-of-type{
+            border: none;
+        }
+
+        a {
+            display: block;
+            padding: 5px 20px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #eee;
+            }
+        }
+    }
+}

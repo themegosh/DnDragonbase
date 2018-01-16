@@ -58,49 +58,37 @@ class SearchBox extends Component {
                     ref={input => this.search = input}
                     onChange={this.handleInputChange}/>
 
-                <div className='search-results-summary'>
+                <div className='search-results'>
+                    <span>
+                        Results:
+                    </span>
                     <span>
                         {this.state.results.Item.length}
-                    </span>
-                    <strong>
                         items
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Spell.length}
-                    </span>
-                    <strong>
                         Spells,
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Race.length}
-                    </span>
-                    <strong>
                         Races,
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Classe.length}
-                    </span>
-                    <strong>
                         Classes,
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Feat.length}
-                    </span>
-                    <strong>
                         Feats,
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Background.length}
-                    </span>
-                    <strong>
                         Backgrounds,
-                    </strong>
+                    </span>
                     <span>
                         {this.state.results.Monster.length}
-                    </span>
-                    <strong>
-                        Monsters
-                    </strong>
+                        Monsters</span>
 
                 </div>
                 <div className='clearfix'>

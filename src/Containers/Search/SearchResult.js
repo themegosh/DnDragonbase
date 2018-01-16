@@ -9,7 +9,14 @@ class SearchResult extends Component {
                 <Link
                     to={{
                     pathname: '/' + this.props.type + '/' + this.props.name
-                }}>{this.props.name}</Link>
+                }}>
+                    <span>
+                        {this.props.name}
+                    </span>
+                    <span className='pull-right'>
+                        {this.props.type}
+                    </span>
+                </Link>
             </div>
         )
     }
