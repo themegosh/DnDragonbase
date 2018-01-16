@@ -6,7 +6,7 @@ class Setup extends Component {
     constructor() {
         super();
         this.state = {
-            txtSourceUrl: 'http://rhizophagous-experi.000webhostapp.com/something.php',
+            txtSourceUrl: 'https://rhizophagous-experi.000webhostapp.com/something.php',
             isCompendiumSet: false,
             loading: false
         };
