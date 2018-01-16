@@ -20,9 +20,11 @@ class App extends Component {
 
     }
 
+  
     render() {
+        console.log('a fresh publish! 2')
         return (
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <div>
                     <div className='nav-buttons'>
                         <div className='nav-button'>
@@ -35,13 +37,13 @@ class App extends Component {
 
                     </div>
                     <Switch>
-                        <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
-                        <Route path={process.env.PUBLIC_URL + '/setup'} component={Setup}/>
-                        <Route path={process.env.PUBLIC_URL + '/Class/:name'} component={Class}/>
-                        <Route path={process.env.PUBLIC_URL + '/Item/:name'} component={Item}/>
-                        <Route path={process.env.PUBLIC_URL + '/Background/:name'} component={Background}/>
-                        <Route path={process.env.PUBLIC_URL + '/Spell/:name'} component={Spell}/>
-                        <Route path={process.env.PUBLIC_URL + '/Monster/:name'} component={Monster}/>
+                        <Route exact path='/' component={Home}/>
+                        <Route path='/setup' component={Setup}/>
+                        <Route path='/Class/:name' component={Class}/>
+                        <Route path='/Item/:name' component={Item}/>
+                        <Route path='/Background/:name' component={Background}/>
+                        <Route path='/Spell/:name' component={Spell}/>
+                        <Route path='/Monster/:name' component={Monster}/>
                         <Route component={NotFound}/>
                     </Switch>
                 </div>
