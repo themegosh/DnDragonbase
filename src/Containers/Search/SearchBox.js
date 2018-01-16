@@ -24,6 +24,15 @@ class SearchBox extends Component {
         this.setState({results: results});
     }, 500);
 
+    //only re-render if there are results to show!
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.results != nextState.results)
+            return true;
+        else
+            return false;
+    }
+
+    //this is needed otherwise the search txtbox is readonly
     handleInputChange = () => {
         this.setState({
             query: this.search.value
