@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import ThingText from '../../Components/ThingText'
 import PrettyObj from '../../Components/PrettyObj'
 import Compendium from '../../Helpers/Compendium'
+
 
 class Item extends Component {
     constructor(props){
@@ -24,6 +26,8 @@ class Item extends Component {
         return ( 
             <div className="Item">
                 <h1>{this.state.item.name}</h1>
+                <ThingText {...this.state.item.text}></ThingText>
+                <hr/>
                 <PrettyObj {...this.state.item}></PrettyObj>
             </div>
         );

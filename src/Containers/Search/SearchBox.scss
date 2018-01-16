@@ -1,6 +1,4 @@
 .search-box {
-    display: block;
-
     .search-results-summary {
         padding: 10px;
 
@@ -11,7 +9,6 @@
     }
 
     .search-result {
-        display: block;
         border-bottom: 1px solid #999;
 
         &:last-of-type{
