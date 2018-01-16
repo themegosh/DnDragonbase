@@ -13,7 +13,7 @@ class SearchBox extends Component {
                 Item: [],
                 Spell: [],
                 Race: [],
-                Classe: [],
+                Class: [],
                 Feat: [],
                 Background: [],
                 Monster: []
@@ -78,7 +78,7 @@ class SearchBox extends Component {
                         Races,
                     </strong>
                     <span>
-                        {this.state.results.Classe.length}
+                        {this.state.results.Class.length}
                     </span>
                     <strong>
                         Classes,

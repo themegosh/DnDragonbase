@@ -173,7 +173,7 @@ class Compendium {
             Race: [],
             Background: [],
             Monster: [],
-            Classe: []
+            Class: []
         };
 
         var regex = new RegExp(query, 'i');
@@ -241,6 +241,18 @@ class Compendium {
                     results
                         .Monster
                         .push(monster);
+                }
+            })
+
+            
+        //Classses
+        this
+            .Classes
+            .forEach(aClass => {
+                if (aClass.name.search(regex) > -1 ) {
+                    results
+                        .Class
+                        .push(aClass);
                 }
             })
 
