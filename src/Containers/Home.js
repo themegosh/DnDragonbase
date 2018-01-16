@@ -18,66 +18,6 @@ class Home extends Component {
                     <li>Races: {Compendium.Races.length}</li>
                     <li>Monsters: {Compendium.Monsters.length}</li>
                 </ul>
-                <hr/>
-                <div className='row'>
-                    <div className='col-md-3'>
-                        {Compendium
-                            .Classes
-                            .map((thing, id) => {
-                                return (
-                                    <div key={id}>
-                                        <Link
-                                            to={{
-                                            pathname: '/Class/' + thing.name
-                                        }}>{thing.name}</Link>
-                                    </div>
-                                )
-                            })}
-                    </div>
-                    <div className='col-md-3'>
-                        {Compendium
-                            .Items
-                            .map((thing, id) => {
-                                return (
-                                    <div key={id}>
-                                        <Link
-                                            to={{
-                                            pathname: '/Item/' + thing.name
-                                        }}>{thing.name}</Link>
-                                    </div>
-                                )
-                            })}
-                    </div>
-                    <div className='col-md-3'>
-                        {Compendium
-                            .Backgrounds
-                            .map((thing, id) => {
-                                return (
-                                    <div key={id}>
-                                        <Link
-                                            to={{
-                                            pathname: '/Background/' + thing.name
-                                        }}>{thing.name}</Link>
-                                    </div>
-                                )
-                            })}
-                    </div>
-                    <div className='col-md-3'>
-                        {Compendium
-                            .Spells
-                            .map((thing, id) => {
-                                return (
-                                    <div key={id}>
-                                        <Link
-                                            to={{
-                                            pathname: '/Spell/' + thing.name
-                                        }}>{thing.name}</Link>
-                                    </div>
-                                )
-                            })}
-                    </div>
-                </div>
-
             </div>
         );
     }

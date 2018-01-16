@@ -1,19 +1,22 @@
 import React, {Component} from 'react'
-import Compendium from '../../Helpers/Compendium'
 import _ from 'lodash'
-import {Link} from 'react-router-dom'
+import Compendium from '../../Helpers/Compendium'
+import SearchResult from './SearchResult'
 
 class SearchBox extends Component {
-    state = {
-        query: '',
-        results: {
-            Item: [],
-            Spell: [],
-            Race: [],
-            Classe: [],
-            Feat: [],
-            Background: [],
-            Monster: []
+    constructor() {
+        super()
+        this.state = {
+            query: '',
+            results: {
+                Item: [],
+                Spell: [],
+                Race: [],
+                Classe: [],
+                Feat: [],
+                Background: [],
+                Monster: []
+            }
         }
     }
 
@@ -26,12 +29,12 @@ class SearchBox extends Component {
 
     //only re-render if there are results to show!
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.results != nextState.results)
+        if (this.state.results != nextState.results) 
             return true;
-        else
+        else 
             return false;
-    }
-
+        }
+    
     //this is needed otherwise the search txtbox is readonly
     handleInputChange = () => {
         this.setState({
@@ -39,7 +42,9 @@ class SearchBox extends Component {
         }, () => {
             if (this.state.query && this.state.query.length > 1) {
                 this.findResults()
-            } else if (!this.state.query) {}
+            } else {
+                {}
+            }
         })
     }
 
@@ -70,12 +75,7 @@ class SearchBox extends Component {
                                 .results[key]
                                 .map((anItem, id) => {
                                     return (
-                                        <Link
-                                            key={id}
-                                            className='col-sm-2'
-                                            to={{
-                                            pathname: '/' + key + '/' + anItem.name
-                                        }}>{anItem.name}</Link>
+                                        <SearchResult key={id} name={anItem.name} type={key}></SearchResult>
                                     )
                                 })
 
