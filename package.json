@@ -1,5 +1,5 @@
 {
-  "name": "test-xml-parsing",
+  "name": "dndragonbase",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",
+    "git-push": "^0.1.1",
     "react-scripts": "1.0.17",
     "redux-devtools": "^3.4.1"
   },
@@ -28,7 +29,9 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "npm run build&&gh-pages -d build"
   },
   "homepage": "http://themegosh.github.io/DnDragonbase"
 }
