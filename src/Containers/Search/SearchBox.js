@@ -8,7 +8,8 @@ class SearchBox extends Component {
     constructor() {
         super()
         this.state = {
-            query: '',
+            search: '',
+            isDeepSearch: false,
             results: {
                 Item: [],
                 Spell: [],
@@ -22,7 +23,7 @@ class SearchBox extends Component {
     }
 
     findResults = _.debounce(() => {
-        var results = Compendium.Search(this.state.query);
+        var results = Compendium.Search(this.state.search, this.state.isDeepSearch);
         console.log('finding results...', results);
 
         this.setState({results: results});
@@ -30,32 +31,48 @@ class SearchBox extends Component {
 
     //only re-render if there are results to show!
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.results != nextState.results) 
-            return true;
-        else 
-            return false;
-        }
-    
+        //console.log('shouldComponentUpdate', nextProps, nextState)
+        // if (this.state.results != nextState.results)     return true; else     return
+        // false;
+        return true;
+    }
+
     //this is needed otherwise the search txtbox is readonly
-    handleInputChange = () => {
+    handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox'
+            ? target.checked
+            : target.value;
+        const name = target.name;
+
         this.setState({
-            query: this.search.value
+            [name]: value
         }, () => {
-            if (this.state.query && this.state.query.length > 1) {
+            if (this.state.search && this.state.search.length > 1) {
                 this.findResults()
             } else {
                 {}
             }
-        })
+        });
+
     }
 
     render() {
         return (
             <form className='search-box'>
+                <label className='checkbox'>
+                    <input
+                        name='isDeepSearch'
+                        type='checkbox'
+                        checked={this.state.isDeepSearch}
+                        onChange={this.handleInputChange}/>
+                    Deep Search
+                </label>
                 <input
-                    className='form-control'
+                    className='form-control txt-search'
                     placeholder="Search for..."
-                    ref={input => this.search = input}
+                    name="search"
+                    value={this.state.search}
                     onChange={this.handleInputChange}/>
 
                 <div className='search-results-summary'>

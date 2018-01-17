@@ -165,7 +165,7 @@ class Compendium {
         localStorage.clear();
     }
 
-    Search(query) {
+    Search(query, isDeep) {
         var results = {
             Item: [],
             Spell: [],
@@ -176,74 +176,9 @@ class Compendium {
             Class: []
         };
 
+        query = query.replace('\\', '');
+
         var regex = new RegExp(query, 'i');
-
-        //Items
-        this
-            .Items
-            .forEach(item => {
-                if (item.name.search(regex) > -1 || this.TextArrContains(regex, item.text)) {
-                    results
-                        .Item
-                        .push(item);
-                }
-            })
-
-        //Spells
-        this
-            .Spells
-            .forEach(spell => {
-                if (spell.name.search(regex) > -1 || this.TextArrContains(regex, spell.text)) {
-                    results
-                        .Spell
-                        .push(spell);
-                }
-            })
-
-        //Feats
-        this
-            .Feats
-            .forEach(feat => {
-                if (feat.name.search(regex) > -1 || this.TextArrContains(regex, feat.text)) {
-                    results
-                        .Feat
-                        .push(feat);
-                }
-            })
-
-        //Races
-        this
-            .Races
-            .forEach(race => {
-                if (race.name.search(regex) > -1 || this.TraitContains(regex, race.trait)) {
-                    results
-                        .Race
-                        .push(race);
-                }
-            })
-
-        //Backgrounds
-        this
-            .Backgrounds
-            .forEach(background => {
-                if (background.name.search(regex) > -1 || this.TraitContains(regex, background.trait)) {
-                    results
-                        .Background
-                        .push(background);
-                }
-            })
-
-        //Monsters
-        this
-            .Monsters
-            .forEach(monster => {
-                if (monster.name.search(regex) > -1 || this.TraitContains(regex, monster.trait)) {
-                    results
-                        .Monster
-                        .push(monster);
-                }
-            })
-
             
         //Classses
         this
@@ -256,6 +191,71 @@ class Compendium {
                 }
             })
 
+        //Items
+        this
+            .Items
+            .forEach(item => {
+                if (item.name.search(regex) > -1 || (isDeep && this.TextArrContains(regex, item.text))) {
+                    results
+                        .Item
+                        .push(item);
+                }
+            })
+
+        //Spells
+        this
+            .Spells
+            .forEach(spell => {
+                if (spell.name.search(regex) > -1 || (isDeep && this.TextArrContains(regex, spell.text))) {
+                    results
+                        .Spell
+                        .push(spell);
+                }
+            })
+
+        //Feats
+        this
+            .Feats
+            .forEach(feat => {
+                if (feat.name.search(regex) > -1 || (isDeep && this.TextArrContains(regex, feat.text))) {
+                    results
+                        .Feat
+                        .push(feat);
+                }
+            })
+
+        //Races
+        this
+            .Races
+            .forEach(race => {
+                if (race.name.search(regex) > -1 || (isDeep && this.TraitContains(regex, race.trait))) {
+                    results
+                        .Race
+                        .push(race);
+                }
+            })
+
+        //Backgrounds
+        this
+            .Backgrounds
+            .forEach(background => {
+                if (background.name.search(regex) > -1 || (isDeep && this.TraitContains(regex, background.trait))) {
+                    results
+                        .Background
+                        .push(background);
+                }
+            })
+
+        //Monsters
+        this
+            .Monsters
+            .forEach(monster => {
+                if (monster.name.search(regex) > -1 || (isDeep && this.TraitContains(regex, monster.trait))) {
+                    results
+                        .Monster
+                        .push(monster);
+                }
+            })
 
         return results;
     }
