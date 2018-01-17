@@ -4,7 +4,7 @@ import ThingText from '../../Components/ThingText'
 import Compendium from '../../Helpers/Compendium'
 
 class Spell extends Component {
-    constructor(props){
+    constructor(props) {
         super();
         this.state = {
             spell: {}
@@ -32,19 +32,25 @@ class Spell extends Component {
 
     render() {
 
-        let spellStats = Object.keys(this.state.spell).map(
-            key => {
-                if (key !== 'name' && key !== 'text')
-                    return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.spell[key]}</div>
-            }
-        )
+        let spellStats = Object
+            .keys(this.state.spell)
+            .map(key => {
+                if (key !== 'name' && key !== 'text') 
+                    return (
+                        <div key={key}>
+                            <strong className='thing-summary-name'>{key}:</strong>
+                            {this.state.spell[key]}
+                        </div>
+                    )
+                else 
+                    return null
+            })
 
-        return ( 
+        return (
             <div className='container'>
                 <div className="Spell">
                     <h1>{this.state.spell.name}</h1>
-                    <hr/>
-                    {spellStats}
+                    <hr/> {spellStats}
                     <hr/>
                     <ThingText text={this.state.spell.text}></ThingText>
                 </div>

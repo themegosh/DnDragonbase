@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
 import _ from 'lodash'
 import Compendium from '../../Helpers/Compendium'
 import SearchResult from './SearchResult'
@@ -52,8 +51,6 @@ class SearchBox extends Component {
         }, () => {
             if (this.state.search && this.state.search.length > 1) {
                 this.findResults()
-            } else {
-                {}
             }
         });
 
@@ -87,7 +84,7 @@ class SearchBox extends Component {
 
     getSearchResults() {
 
-        if (!this.state.showResults || !this.state.results.Item.length && !this.state.results.Spell.length && !this.state.results.Race.length && !this.state.results.Class.length && !this.state.results.Feat.length && !this.state.results.Background.length && !this.state.results.Monster.length) {
+        if (!this.state.showResults || (!this.state.results.Item.length && !this.state.results.Spell.length && !this.state.results.Race.length && !this.state.results.Class.length && !this.state.results.Feat.length && !this.state.results.Background.length && !this.state.results.Monster.length)) {
             return null;
         }
 

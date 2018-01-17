@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import Compendium from '../../Helpers/Compendium'
 import PrettyObj from '../../Components/PrettyObj'
-import ThingText from '../../Components/ThingText'
 import TraitText from '../../Components/TraitText'
 
 class Background extends Component {
-    constructor(props){
+    constructor(props) {
         super();
         this.state = {
             background: {}
@@ -31,15 +30,21 @@ class Background extends Component {
     }
 
     render() {
-        
-        let backgroundInfo = Object.keys(this.state.background).map(
-            key => {
-                if (key !== 'name' && key !== 'text' && key !== 'trait')
-                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.background[key]}</div>
-            }
-        )
 
-        return ( 
+        let backgroundInfo = Object
+            .keys(this.state.background)
+            .map(key => {
+                if (key !== 'name' && key !== 'text' && key !== 'trait') 
+                    return (
+                        <div key={key}>
+                            <strong className='capitalize'>{key}:</strong>
+                            {this.state.background[key]}</div>
+                    )
+                else 
+                    return null
+            })
+
+        return (
             <div className='container'>
                 <div className="Background">
                     <h1>{this.state.background.name}</h1>

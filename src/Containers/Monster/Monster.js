@@ -33,20 +33,24 @@ class Monster extends Component {
 
     render() {
 
-        let monsterStats = Object.keys(this.state.monster).map(
-            key => {
-                if (key !== 'name' && key != 'trait' && key != 'action' && key != 'legendary')
-                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.monster[key]}</div>
-            }
-        )
-        
+        let monsterStats = Object
+            .keys(this.state.monster)
+            .map(key => {
+                if (key !== 'name' && key !== 'trait' && key !== 'action' && key !== 'legendary') 
+                    return <div key={key}>
+                        <strong className='capitalize'>{key}:</strong>
+                        {this.state.monster[key]}</div>
+                else 
+                    return null;
+                }
+            )
+
         return (
             <div>
                 <div className='container'>
                     <div className="Monsters">
                         <h1>{this.state.monster.name}</h1>
-                        <hr/>
-                        {monsterStats}
+                        <hr/> {monsterStats}
                         <hr/>
                         <TraitText trait={this.state.monster.trait}></TraitText>
                         <hr/>

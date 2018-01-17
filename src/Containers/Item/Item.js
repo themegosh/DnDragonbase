@@ -36,9 +36,14 @@ class Item extends Component {
             .keys(this.state.item)
             .map(key => {
                 if (key !== 'name' && key !== 'text' && key !== 'modifier') 
-                    return <p key={key}>
-                        <strong className='capitalize'>{key}:</strong>
-                        {this.state.item[key]}</p>
+                    return (
+                        <p key={key}>
+                            <strong className='capitalize'>{key}:</strong>
+                            {this.state.item[key]}
+                        </p>
+                    )
+                else 
+                    return null
             })
 
         return (

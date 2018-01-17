@@ -33,20 +33,26 @@ class Race extends Component {
 
     render() {
 
-        let raceInfo = Object.keys(this.state.race).map(
-            key => {
-                if (key !== 'name' && key !== 'text' && key !== 'trait')
-                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.race[key]}</div>
-            }
-        )
+        let raceInfo = Object
+            .keys(this.state.race)
+            .map(key => {
+                if (key !== 'name' && key !== 'text' && key !== 'trait') 
+                    return (
+                        <div key={key}>
+                            <strong className='capitalize'>{key}:</strong>
+                            {this.state.race[key]}
+                        </div>
+                    )
+                else 
+                    return null
+            })
 
         return (
             <div>
                 <div className='container'>
                     <div className="race">
                         <h1>{this.state.race.name}</h1>
-                        <hr/>
-                        {raceInfo}
+                        <hr/> {raceInfo}
                         <hr/>
                         <ThingText text={this.state.race.text}></ThingText>
                         <hr/>

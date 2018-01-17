@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PrettyObj from './../Components/PrettyObj';
 import Compendium from '../Helpers/Compendium';
 
 class Setup extends Component {

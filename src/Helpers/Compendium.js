@@ -92,7 +92,7 @@ class Compendium {
 
         aClass
             .autolevel
-            .map(level => {
+            .forEach(level => {
                 //console.log(level);
 
                 var lvlNum = level['-level'];
