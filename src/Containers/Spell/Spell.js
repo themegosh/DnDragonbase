@@ -24,7 +24,7 @@ class Spell extends Component {
 
         let spellStats = Object.keys(this.state.spell).map(
             key => {
-                if (key !== 'text')
+                if (key !== 'name' && key !== 'text')
                     return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.spell[key]}</div>
             }
         )

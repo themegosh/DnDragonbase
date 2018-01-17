@@ -32,17 +32,6 @@ class Monster extends Component {
             }
         )
         
-        let legendaryText = null;
-        if (Array.isArray(this.state.monster.legendary)){
-            legendaryText = this.state.monster.legendary.map(anAction => {
-                return <div>
-                        <h4>{anAction.name}</h4>
-                        <ThingText text={anAction.text}></ThingText>
-                        <p><em>{anAction.attack}</em></p>
-                    </div>
-            })
-        }
-
         return (
             <div>
                 <div className='container'>

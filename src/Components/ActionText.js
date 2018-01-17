@@ -4,7 +4,6 @@ import ThingText from './ThingText'
 class ActionText extends Component {
 
     getAttack (action){
-        console.log(action)
         if (action.attack){
             return (
                 <p>
@@ -19,7 +18,7 @@ class ActionText extends Component {
             return null;
         }
         let text = null
-        if (Array.isArray(this.props.action))  {//
+        if (Array.isArray(this.props.action))  {
             text = this
                 .props
                 .action

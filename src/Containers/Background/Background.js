@@ -23,10 +23,18 @@ class Background extends Component {
 
     render() {
         
+        let backgroundInfo = Object.keys(this.state.background).map(
+            key => {
+                if (key !== 'name' && key !== 'text' && key !== 'trait')
+                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.background[key]}</div>
+            }
+        )
+
         return ( 
             <div className='container'>
                 <div className="Background">
                     <h1>{this.state.background.name}</h1>
+                    {backgroundInfo}
                     <TraitText trait={this.state.background.trait}></TraitText>
                     <PrettyObj {...this.state.background}></PrettyObj>
                 </div>
