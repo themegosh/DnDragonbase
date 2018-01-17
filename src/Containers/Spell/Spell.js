@@ -22,7 +22,7 @@ class Spell extends Component {
 
     render() {
 
-        var spellStats = Object.keys(this.state.spell).map(
+        let spellStats = Object.keys(this.state.spell).map(
             key => {
                 if (key !== 'text')
                     return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.spell[key]}</div>

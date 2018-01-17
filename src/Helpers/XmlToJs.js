@@ -6,8 +6,8 @@ var XmlToJs = function () {
 };
 
 XmlToJs.prototype.parseXML = function (xml) {
-    var root;
-    var dom = new window
+    let root;
+    let dom = new window
         .DOMParser()
         .parseFromString(xml, "text/xml");
     if (!dom) 
@@ -24,17 +24,17 @@ XmlToJs.prototype.parseDOM = function (root) {
     
     this.__force_array = {};
     if (this.force_array) {
-        for (var i = 0; i < this.force_array.length; i++) {
+        for (let i = 0; i < this.force_array.length; i++) {
             this.__force_array[this.force_array[i]] = 1;
         }
     }
 
-    var json = this.parseElement(root); // parse root node
+    let json = this.parseElement(root); // parse root node
     if (this.__force_array[root.nodeName]) {
         json = [json];
     }
     if (root.nodeType !== 11) { // DOCUMENT_FRAGMENT_NODE
-        var tmp = {};
+        let tmp = {};
         tmp[root.nodeName] = json; // root nodeName
         json = tmp;
     }
@@ -49,7 +49,7 @@ XmlToJs.prototype.parseElement = function (elem) {
 
     //  TEXT_NODE CDATA_SECTION_NODE
     if (elem.nodeType === 3 || elem.nodeType === 4) {
-        var bool = elem
+        let bool = elem
             .nodeValue
             .match(/[^\x00-\x20]/);
         if (bool == null) 
@@ -57,17 +57,17 @@ XmlToJs.prototype.parseElement = function (elem) {
         return elem.nodeValue;
     }
 
-    var retval;
-    var cnt = {};
+    let retval;
+    let cnt = {};
 
     //  parse attributes
     if (elem.attributes && elem.attributes.length) {
         retval = {};
-        for (var i = 0; i < elem.attributes.length; i++) {
-            var key = elem.attributes[i].nodeName;
+        for (let i = 0; i < elem.attributes.length; i++) {
+            let key = elem.attributes[i].nodeName;
             if (typeof(key) !== "string") 
                 continue;
-            var val = elem.attributes[i].nodeValue;
+            let val = elem.attributes[i].nodeValue;
             if (!val) 
                 continue;
             key = '-' + key;
@@ -80,11 +80,11 @@ XmlToJs.prototype.parseElement = function (elem) {
 
     //  parse child nodes (recursive)
     if (elem.childNodes && elem.childNodes.length) {
-        var textonly = true;
+        let textonly = true;
         if (retval) 
             textonly = false; // some attributes exists
-        for (var i = 0; i < elem.childNodes.length && textonly; i++) {
-            var ntype = elem.childNodes[i].nodeType;
+        for (let i = 0; i < elem.childNodes.length && textonly; i++) {
+            let ntype = elem.childNodes[i].nodeType;
             if (ntype === 3 || ntype === 4) 
                 continue;
             textonly = false;
@@ -92,18 +92,18 @@ XmlToJs.prototype.parseElement = function (elem) {
         if (textonly) {
             if (!retval) 
                 retval = "";
-            for (var i = 0; i < elem.childNodes.length; i++) {
+            for (let i = 0; i < elem.childNodes.length; i++) {
                 //if we care about replacing \t and other weird things, do so here
                 retval += elem.childNodes[i].nodeValue; //.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
             }
         } else {
             if (!retval) 
                 retval = {};
-            for (var i = 0; i < elem.childNodes.length; i++) {
-                var key = elem.childNodes[i].nodeName;
+            for (let i = 0; i < elem.childNodes.length; i++) {
+                let key = elem.childNodes[i].nodeName;
                 if (typeof(key) !== "string") 
                     continue;
-                var val = this.parseElement(elem.childNodes[i]);
+                let val = this.parseElement(elem.childNodes[i]);
                 if (!val) 
                     continue;
                 if (typeof(cnt[key]) === "undefined") 

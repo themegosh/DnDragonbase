@@ -19,7 +19,6 @@ class Compendium {
     }
 
     SetSource(url) {
-        var self = this;
         return fetch(url, {
             mode: 'cors'
         })
@@ -36,51 +35,51 @@ class Compendium {
                 tree
                     .item
                     .forEach(item => {
-                        self
+                        this
                             .Items
                             .push(item);
                     });
                 tree
                     .race
                     .forEach(race => {
-                        self
+                        this
                             .Races
                             .push(race);
                     });
                 tree
                     .background
                     .forEach(bg => {
-                        self
+                        this
                             .Backgrounds
                             .push(bg);
                     });
                 tree
                     .feat
                     .forEach(feat => {
-                        self
+                        this
                             .Feats
                             .push(feat);
                     });
                 tree
                     .monster
                     .forEach(monster => {
-                        self
+                        this
                             .Monsters
                             .push(monster);
                     });
                 tree
                     .spell
                     .forEach(spell => {
-                        self
+                        this
                             .Spells
                             .push(spell);
                     });
                 tree
                     .class
                     .forEach(aClass => {
-                        self
+                        this
                             .Classes
-                            .push(self.MapClass(aClass));
+                            .push(this.MapClass(aClass));
                     });
 
                 localStorage.setItem('Compendium', JSON.stringify(this));

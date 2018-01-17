@@ -23,14 +23,14 @@ class Monster extends Component {
 
     render() {
 
-        var monsterStats = Object.keys(this.state.monster).map(
+        let monsterStats = Object.keys(this.state.monster).map(
             key => {
                 if (key != 'trait' && key != 'action' && key != 'legendary')
-                    return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.monster[key]}</div>
+                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.monster[key]}</div>
             }
         )
 
-        var traitText = null;
+        let traitText = null;
         if (Array.isArray(this.state.monster.trait)){
             traitText = this.state.monster.trait.map(aTrait => {
                 return <div>
@@ -41,7 +41,7 @@ class Monster extends Component {
         }
 
         
-        var actionText = null;
+        let actionText = null;
         if (Array.isArray(this.state.monster.action)){
             actionText = this.state.monster.action.map(anAction => {
                 return <div>
@@ -53,7 +53,7 @@ class Monster extends Component {
         }
         
         
-        var legendaryText = null;
+        let legendaryText = null;
         if (Array.isArray(this.state.monster.legendary)){
             legendaryText = this.state.monster.legendary.map(anAction => {
                 return <div>

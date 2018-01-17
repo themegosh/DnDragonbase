@@ -22,7 +22,7 @@ class Background extends Component {
 
     render() {
         
-        var traitText = null;
+        let traitText = null;
         if (Array.isArray(this.state.background.trait)){
             traitText = this.state.background.trait.map(aTrait => {
                 return <div>

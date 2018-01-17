@@ -23,7 +23,7 @@ class SearchBox extends Component {
     }
 
     findResults = _.debounce(() => {
-        var results = Compendium.Search(this.state.search, this.state.isDeepSearch);
+        let results = Compendium.Search(this.state.search, this.state.isDeepSearch);
         console.log('finding results...', results);
 
         this.setState({results: results});
