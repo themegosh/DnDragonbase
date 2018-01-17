@@ -11,14 +11,14 @@ import Spell from './Spell/Spell';
 import Monster from './Monster/Monster';
 import Feat from './Feat/Feat';
 import Race from './Race/Race';
+import SearchBox from './Search/SearchBox';
 
 import './App.css';
 
 class App extends Component {
     constructor() {
         super();
-        this.state = {
-        };
+        this.state = {};
 
     }
 
@@ -36,6 +36,10 @@ class App extends Component {
                         <hr/>
 
                     </div>
+                    <div className='container'>
+                        <SearchBox></SearchBox>
+                    </div>
+
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route path='/setup' component={Setup}/>

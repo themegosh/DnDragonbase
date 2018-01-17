@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home container">
-                <SearchBox></SearchBox>
+                <h2>What goes here? Hello world!</h2>
                 <hr/>
                 <ul>
                     <li>Spells: {Compendium.Spells.length}</li>

@@ -5,7 +5,7 @@ class SearchResult extends Component {
 
     render() {
         return (
-            <div className='search-result'>
+            <div className='search-result' onClick={this.props.handleResultSelect}>
                 <Link
                     to={{
                     pathname: '/' + this.props.type + '/' + this.props.name

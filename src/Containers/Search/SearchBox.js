@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import _ from 'lodash'
 import Compendium from '../../Helpers/Compendium'
 import SearchResult from './SearchResult'
@@ -10,6 +11,7 @@ class SearchBox extends Component {
         this.state = {
             search: '',
             isDeepSearch: false,
+            showResults: false,
             results: {
                 Item: [],
                 Spell: [],
@@ -31,8 +33,8 @@ class SearchBox extends Component {
 
     //only re-render if there are results to show!
     shouldComponentUpdate(nextProps, nextState) {
-        //console.log('shouldComponentUpdate', nextProps, nextState)
-        // if (this.state.results != nextState.results)     return true; else     return
+        // console.log('shouldComponentUpdate', nextProps, nextState) if
+        // (this.state.results != nextState.results)     return true; else     return
         // false;
         return true;
     }
@@ -57,24 +59,41 @@ class SearchBox extends Component {
 
     }
 
-    render() {
-        return (
-            <form className='search-box'>
-                <label className='checkbox'>
-                    <input
-                        name='isDeepSearch'
-                        type='checkbox'
-                        checked={this.state.isDeepSearch}
-                        onChange={this.handleInputChange}/>
-                    Deep Search
-                </label>
-                <input
-                    className='form-control txt-search'
-                    placeholder="Search for..."
-                    name="search"
-                    value={this.state.search}
-                    onChange={this.handleInputChange}/>
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
 
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    setWrapperRef = (node) => {
+        this.wrapperRef = node;
+    }
+
+    handleClickOutside = (event) => {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({showResults: false})
+        }
+    }
+
+    handleFocus = () => {
+        this.setState({showResults: true})
+    }
+
+    handleResultSelect = () => {
+        this.setState({showResults: false})
+    }
+
+    getSearchResults() {
+
+        if (!this.state.showResults || !this.state.results.Item.length && !this.state.results.Spell.length && !this.state.results.Race.length && !this.state.results.Class.length && !this.state.results.Feat.length && !this.state.results.Background.length && !this.state.results.Monster.length) {
+            return null;
+        }
+
+        return (
+
+            <div className='search-results'>
                 <div className='search-results-summary'>
                     <span>
                         {this.state.results.Item.length}
@@ -129,12 +148,38 @@ class SearchBox extends Component {
                                 .results[key]
                                 .map((anItem, id) => {
                                     return (
-                                        <SearchResult key={id} name={anItem.name} type={key}></SearchResult>
+                                        <SearchResult
+                                            key={id}
+                                            name={anItem.name}
+                                            type={key}
+                                            handleResultSelect={this.handleResultSelect}></SearchResult>
                                     )
                                 })
 
                         })}
                 </div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <form className='search-box' autoComplete="off" ref={this.setWrapperRef}>
+                <label className='checkbox'>
+                    <input
+                        name='isDeepSearch'
+                        type='checkbox'
+                        checked={this.state.isDeepSearch}
+                        onChange={this.handleInputChange}/>
+                    Deep Search
+                </label>
+                <input
+                    className='form-control txt-search'
+                    placeholder="Search for..."
+                    name="search"
+                    value={this.state.search}
+                    onChange={this.handleInputChange}
+                    onFocus={this.handleFocus}/> {this.getSearchResults()}
             </form>
         )
     }
