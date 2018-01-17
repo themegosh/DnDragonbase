@@ -5,6 +5,10 @@ class ModifierText extends Component {
     //-bonus -ability score -skills
 
     render() {
+        if (!this.props.modifier){
+            return null;
+        }
+
         let text = null
         if (Array.isArray(this.props.modifier)) {
             text = this
