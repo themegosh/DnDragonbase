@@ -26,8 +26,8 @@ class Item extends Component {
 
         let itemStats = Object.keys(this.state.item).map(
             key => {
-                if (key !== 'text' && key !== 'modifier')
-                    return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.item[key]}</div>
+                if (key !== 'name' && key !== 'text' && key !== 'modifier')
+                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.item[key]}</div>
             }
         )
 
@@ -37,12 +37,11 @@ class Item extends Component {
                     <div className="Item">
                         <h1>{this.state.item.name}</h1>
                         <hr/>
-                        {/*{itemStats}*/}
+                        {itemStats}
+                        <ModifierText modifier={this.state.item.modifier}></ModifierText>
                         <hr/>
                         <ThingText text={this.state.item.text}></ThingText>
                         <hr/>
-                        <ModifierText modifier={this.state.item.modifier}></ModifierText>
-                        <hr />
                     </div>
                 </div>
                 <PrettyObj {...this.state.item}></PrettyObj>

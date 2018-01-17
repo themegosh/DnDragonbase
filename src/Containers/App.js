@@ -10,6 +10,7 @@ import Background from './Background/Background';
 import Spell from './Spell/Spell';
 import Monster from './Monster/Monster';
 import Feat from './Feat/Feat';
+import Race from './Race/Race';
 
 import './App.css';
 
@@ -44,6 +45,7 @@ class App extends Component {
                         <Route path='/Spell/:name' component={Spell}/>
                         <Route path='/Monster/:name' component={Monster}/>
                         <Route path='/Feat/:name' component={Feat}/>
+                        <Route path='/Race/:name' component={Race}/>
                         <Route component={NotFound}/>
                     </Switch>
                 </div>

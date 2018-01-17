@@ -24,10 +24,10 @@ class Feat extends Component {
 
     render() {
 
-        let itemStats = Object.keys(this.state.feat).map(
+        let featStats = Object.keys(this.state.feat).map(
             key => {
-                if (key !== 'text' && key !== 'modifier')
-                    return <div key={key}><strong className='thing-summary-name'>{key}:</strong> {this.state.feat[key]}</div>
+                if (key !== 'name' && key !== 'text' && key !== 'modifier')
+                    return <div key={key}><strong className='capitalize'>{key}:</strong> {this.state.feat[key]}</div>
             }
         )
 
@@ -37,7 +37,7 @@ class Feat extends Component {
                     <div className="feat">
                         <h1>{this.state.feat.name}</h1>
                         <hr/>
-                        {/*{itemStats}*/}
+                        {featStats}
                         <hr/>
                         <ThingText text={this.state.feat.text}></ThingText>
                         <hr/>
