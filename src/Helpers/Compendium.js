@@ -166,13 +166,13 @@ class Compendium {
 
     Search(query, isDeep) {
         var results = {
+            Class: [],
             Item: [],
             Spell: [],
             Feat: [],
             Race: [],
             Background: [],
-            Monster: [],
-            Class: []
+            Monster: []
         };
 
         query = query.replace('\\', '');

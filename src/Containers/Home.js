@@ -6,18 +6,15 @@ import {Link} from 'react-router-dom';
 class Home extends Component {
     render() {
         return (
-            <div className="Home container">
-                <h2>What goes here? Hello world!</h2>
+            <div className="Home container text-center">
                 <hr/>
-                <ul>
-                    <li>Spells: {Compendium.Spells.length}</li>
-                    <li>Classes: {Compendium.Classes.length}</li>
-                    <li>Items: {Compendium.Items.length}</li>
-                    <li>Backgrounds: {Compendium.Backgrounds.length}</li>
-                    <li>Feats: {Compendium.Feats.length}</li>
-                    <li>Races: {Compendium.Races.length}</li>
-                    <li>Monsters: {Compendium.Monsters.length}</li>
-                </ul>
+                <div>Spells: {Compendium.Spells.length}</div>
+                <div>Classes: {Compendium.Classes.length}</div>
+                <div>Items: {Compendium.Items.length}</div>
+                <div>Backgrounds: {Compendium.Backgrounds.length}</div>
+                <div>Feats: {Compendium.Feats.length}</div>
+                <div>Races: {Compendium.Races.length}</div>
+                <div>Monsters: {Compendium.Monsters.length}</div>
             </div>
         );
     }

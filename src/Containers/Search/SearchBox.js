@@ -176,7 +176,7 @@ class SearchBox extends Component {
                 </label>
                 <input
                     className='form-control txt-search'
-                    placeholder="Search for..."
+                    placeholder="Search everything..."
                     name="search"
                     value={this.state.search}
                     onChange={this.handleInputChange}
