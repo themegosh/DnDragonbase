@@ -7,16 +7,25 @@ class Class extends Component {
         super();
         this.state = {
             theClass: {},
-            foundClass: false
         }
+    }
 
-        Compendium.Classes.forEach(aClass => {
-            if (aClass.name === props.match.params.name){
-                this.state.theClass = aClass;
-                this.state.foundClass = true;
-            }
-        })
+    getClass(name) {
+        Compendium
+            .Classes
+            .forEach(aClass => {
+                if (aClass.name === name) {
+                    this.setState({theClass: aClass})
+                }
+            })
+    }
 
+    componentWillMount() {
+        this.getClass(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getClass(props.match.params.name)
     }
 
     render() {

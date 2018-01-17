@@ -11,14 +11,24 @@ class Race extends Component {
             race: {},
             found: false
         }
+    }
+
+    getRace(name) {
         Compendium
             .Races
             .forEach(aRace => {
-                if (aRace.name === props.match.params.name) {
-                    this.state.race = aRace;
-                    this.state.found = true;
+                if (aRace.name === name) {
+                    this.setState({race: aRace})
                 }
             })
+    }
+
+    componentWillMount() {
+        this.getRace(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getRace(props.match.params.name)
     }
 
     render() {

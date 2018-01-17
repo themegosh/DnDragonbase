@@ -8,17 +8,26 @@ class Background extends Component {
     constructor(props){
         super();
         this.state = {
-            background: {},
-            found: false
+            background: {}
         }
+    }
 
-        Compendium.Backgrounds.forEach(aBackground => {
-            if (aBackground.name === props.match.params.name){
-                this.state.background = aBackground;
-                this.state.found = true;
-            }
-        })
+    getBackground(name) {
+        Compendium
+            .Backgrounds
+            .forEach(aBackground => {
+                if (aBackground.name === name) {
+                    this.setState({background: aBackground})
+                }
+            })
+    }
 
+    componentWillMount() {
+        this.getBackground(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getBackground(props.match.params.name)
     }
 
     render() {

@@ -7,17 +7,27 @@ class Spell extends Component {
     constructor(props){
         super();
         this.state = {
-            spell: {},
-            found: false
+            spell: {}
         }
 
-        Compendium.Spells.forEach(aSpell => {
-            if (aSpell.name === props.match.params.name){
-                this.state.spell = aSpell;
-                this.state.found = true;
-            }
-        })
+    }
 
+    getSpell(name) {
+        Compendium
+            .Spells
+            .forEach(aSpell => {
+                if (aSpell.name === name) {
+                    this.setState({spell: aSpell})
+                }
+            })
+    }
+
+    componentWillMount() {
+        this.getSpell(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getSpell(props.match.params.name)
     }
 
     render() {

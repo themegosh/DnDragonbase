@@ -8,18 +8,26 @@ class Feat extends Component {
     constructor(props) {
         super();
         this.state = {
-            feat: {},
-            found: false
+            feat: {}
         }
+    }
 
+    getFeat(name) {
         Compendium
             .Feats
             .forEach(aFeat => {
-                if (aFeat.name === props.match.params.name) {
-                    this.state.feat = aFeat;
-                    this.state.found = true;
+                if (aFeat.name === name) {
+                    this.setState({feat: aFeat})
                 }
             })
+    }
+
+    componentWillMount() {
+        this.getFeat(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getFeat(props.match.params.name)
     }
 
     render() {

@@ -9,18 +9,26 @@ class Monster extends Component {
     constructor(props) {
         super();
         this.state = {
-            monster: {},
-            found: false
+            monster: {}
         }
+    }
 
+    getMonster(name) {
         Compendium
             .Monsters
             .forEach(aMonster => {
-                if (aMonster.name === props.match.params.name) {
-                    this.state.monster = aMonster;
-                    this.state.found = true;
+                if (aMonster.name === name) {
+                    this.setState({monster: aMonster})
                 }
             })
+    }
+
+    componentWillMount() {
+        this.getMonster(this.props.match.params.name)
+    }
+
+    componentWillReceiveProps(props) {
+        this.getMonster(props.match.params.name)
     }
 
     render() {
