@@ -20,9 +20,7 @@ class App extends Component {
 
     }
 
-  
     render() {
-        console.log('a fresh publish! 3')
         return (
             <Router basename={process.env.PUBLIC_URL}>
                 <div>
