@@ -170,7 +170,8 @@ class SearchBox extends Component {
                         name='isDeepSearch'
                         type='checkbox'
                         checked={this.state.isDeepSearch}
-                        onChange={this.handleInputChange}/>
+                        onChange={this.handleInputChange}
+                        onFocus={this.handleFocus}/>
                     Deep Search
                 </label>
                 <input
