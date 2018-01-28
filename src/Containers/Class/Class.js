@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PrettyObj from "../../Components/PrettyObj";
 import Compendium from "../../Helpers/Compendium";
+import ThingText from "../../Components/ThingText";
+import OrdinalSuffix from "../../Components/OrdinalSuffix";
+import "./Class.css";
 
 class Class extends Component {
     constructor(props) {
@@ -31,43 +34,60 @@ class Class extends Component {
         var rows = [];
         var maxClassLvl = Object.keys(this.state.theClass.levels).length;
         for (let lvlIndex = 1; lvlIndex <= 20; lvlIndex++) {
-            var features = this.state.theClass.levels[lvlIndex].features.map(
-                (aFeature, key) => {
-                    return <span>{aFeature.name} | </span>;
+            var primaryFeatures = this.state.theClass.levels[lvlIndex].features.map(aFeature => {
+                if (aFeature.optional === true) return null;
+                else return aFeature;
+            });
+            var features = primaryFeatures.map((aFeature, key) => {
+                if (aFeature === null) return null;
+                if (aFeature.optional === true) return null;
+                else {
+                    var comma = key < primaryFeatures.length - 1 ? ", " : "";
+                    return (
+                        <span>
+                            {aFeature.name}
+                            {comma}
+                        </span>
+                    );
                 }
-            );
+            });
+
             var slots = [];
             for (var slotIndex = 1; slotIndex <= this.state.theClass.levels[maxClassLvl].slots.length; slotIndex++) {
                 if (this.state.theClass.levels[lvlIndex].slots[slotIndex]) {
-                    slots.push(
-                        <td key={slotIndex}>
-                            {this.state.theClass.levels[lvlIndex].slots[slotIndex]}
-                        </td>
-                    );
+                    slots.push(<td key={slotIndex}>{this.state.theClass.levels[lvlIndex].slots[slotIndex]}</td>);
                 } else {
                     slots.push(<td key={slotIndex}>-</td>);
                 }
             }
-            console.log(features);
             rows.push(
                 <tr key={lvlIndex}>
                     <td>
-                        <h2>{lvlIndex}</h2>
+                        <OrdinalSuffix num={lvlIndex} />
                     </td>
                     <td>{features}</td>
                     {slots}
                 </tr>
             );
         }
+        var slotHeaders = [];
+        for (var index = 1; index <= this.state.theClass.levels[maxClassLvl].slots.length; index++) {
+            slotHeaders.push(
+                <th>
+                    <OrdinalSuffix num={index} />
+                </th>
+            );
+        }
+
         return (
             <table className="table table-striped">
-            <thead>
-                <tr>
-                    <td>Level</td>
-                    <td>Features</td>
-                    
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Features</th>
+                        {slotHeaders}
+                    </tr>
+                </thead>
                 <tbody>{rows}</tbody>
             </table>
         );
@@ -75,9 +95,14 @@ class Class extends Component {
 
     render() {
         return (
-            <div className="Class">
+            <div className="Class container">
                 <h1>{this.state.theClass.name}</h1>
                 {this.getClassChart()}
+                <hr />
+                <div>
+                    <h2>{this.state.theClass.levels[1].features[0].name}</h2>
+                    <ThingText text={this.state.theClass.levels[1].features[0].text} />
+                </div>
                 <PrettyObj {...this.state.theClass} />
             </div>
         );
