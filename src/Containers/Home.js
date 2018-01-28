@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import Compendium from '../Helpers/Compendium';
+import React, { Component } from "react";
+import Compendium from "../Helpers/Compendium";
 
 class Home extends Component {
     render() {
         return (
             <div className="Home container text-center">
-                <hr/>
+                <hr />
                 <div>Spells: {Compendium.Spells.length}</div>
                 <div>Classes: {Compendium.Classes.length}</div>
                 <div>Items: {Compendium.Items.length}</div>
