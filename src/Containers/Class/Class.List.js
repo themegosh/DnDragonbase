@@ -17,9 +17,9 @@ class ClassList extends Component {
         return (
             <div className="container">
                 <div className="class-list">
-                    {Compendium.Classes.map(aClass => {
+                    {Compendium.Classes.map((aClass, key) => {
                         return (
-                            <div>
+                            <div key={key}>
                                 <Link
                                     to={{
                                         pathname: "/Class/" + aClass.name

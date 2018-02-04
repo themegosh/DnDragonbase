@@ -15,10 +15,10 @@ class BackgroundList extends Component {
         return (
             <div className="container">
                 <div className="background-list">
-                    {Compendium.Backgrounds.map(aBackground => {
+                    {Compendium.Backgrounds.map((aBackground, key) => {
                         return (
-                            <div>
-                                <Link
+                            <div key={key}>
+                                <Link 
                                     to={{
                                         pathname: "/Background/" + aBackground.name
                                     }}>

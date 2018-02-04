@@ -17,9 +17,9 @@ class RaceList extends Component {
         return (
             <div className="container">
                 <div className="race-list">
-                    {Compendium.Races.map(aRace => {
+                    {Compendium.Races.map((aRace, key) => {
                         return (
-                            <div>
+                            <div key={key}>
                                 <Link
                                     to={{
                                         pathname: "/Race/" + aRace.name
