@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './PrettyObj.css';
 
 class PrettyObj extends Component {
     syntaxHighlight(json) {
@@ -27,7 +28,7 @@ class PrettyObj extends Component {
     }
     render() {
         return (
-            <pre dangerouslySetInnerHTML={{__html: this.syntaxHighlight(this.props)}}></pre>
+            <pre className='pretty-obj' dangerouslySetInnerHTML={{__html: this.syntaxHighlight(this.props)}}></pre>
         );
     }
 }

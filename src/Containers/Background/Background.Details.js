@@ -3,7 +3,9 @@ import Compendium from "../../Helpers/Compendium";
 import PrettyObj from "../../Components/PrettyObj";
 import TraitText from "../../Components/TraitText";
 
-class Background extends Component {
+import './Background.Details.css';
+
+class BackgroundDetails extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -41,7 +43,7 @@ class Background extends Component {
 
         return (
             <div className="container">
-                <div className="Background">
+                <div className="Background-details">
                     <h1>{this.state.background.name}</h1>
                     {backgroundInfo}
                     <TraitText trait={this.state.background.trait} />
@@ -52,4 +54,4 @@ class Background extends Component {
     }
 }
 
-export default Background;
+export default BackgroundDetails;
