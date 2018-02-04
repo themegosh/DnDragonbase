@@ -1,6 +1,8 @@
 .search-box {
     position: relative;
     .txt-search {
+        background: #333333;
+        border: 2px solid #FFB71B;
         padding-right: 115px;
     }
     .checkbox {
@@ -14,8 +16,9 @@
         position: absolute;
         right: 0;
         left: 0;
-        background: #fff;
-        border: 1px solid #ccc;
+        background: rgb(201, 181, 150);
+        border: 2px solid #FFB71B;
+        border-top: none;
         max-height: 50vh;
         overflow: auto;
 

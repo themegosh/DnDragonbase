@@ -1,5 +1,7 @@
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  background-color: #333333;
+  color: #E8A040; }
 
 .nav-buttons {
   text-align: center;
