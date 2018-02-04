@@ -31,9 +31,7 @@ class App extends Component {
             <Router basename={process.env.PUBLIC_URL}>
                 <div>
                     <Navbar />
-                    <div className="container">
-                        <SearchBox />
-                    </div>
+                    <SearchBox />
 
                     <Switch>
                         <Route exact path="/" component={Home} />

@@ -9,18 +9,6 @@ class Home extends Component {
     render() {
         return (
             <div className="home container text-center">
-                <hr />
-                <div className="row margin-bottom-20">
-                    <div className="col-md-4">
-                        <Link to="/Classes">Classes</Link>
-                    </div>
-                    <div className="col-md-4">
-                        <Link to="/Backgrounds">Backgrounds</Link>
-                    </div>
-                    <div className="col-md-4">
-                        <Link to="/Races">Races</Link>
-                    </div>
-                </div>
                 <div>
                     <div>Spells: {Compendium.Spells.length}</div>
                     <div>Classes: {Compendium.Classes.length}</div>
