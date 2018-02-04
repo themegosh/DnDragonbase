@@ -34,52 +34,57 @@ class ClassDetails extends Component {
     getClassChart() {
         var rows = [];
         var maxClassLvl = Object.keys(this.state.theClass.levels).length;
-        console.log(maxClassLvl)
         for (let lvlIndex = 1; lvlIndex <= maxClassLvl; lvlIndex++) {
-            var primaryFeatures = this.state.theClass.levels[lvlIndex].features.map(aFeature => {
-                if (aFeature.optional === true) return null;
-                else return aFeature;
-            });
-            var features = primaryFeatures.map((aFeature, key) => {
-                if (aFeature === null) return null;
-                if (aFeature.optional === true) return null;
-                else {
-                    var comma = key < primaryFeatures.length - 1 ? ", " : "";
-                    return (
-                        <span>
-                            {aFeature.name}
-                            {comma}
-                        </span>
-                    );
+            if (this.state.theClass.levels[lvlIndex]){
+                var primaryFeatures = this.state.theClass.levels[lvlIndex].features.map(aFeature => {
+                    if (aFeature.optional === true) return null;
+                    else return aFeature;
+                });
+                var features = primaryFeatures.map((aFeature, key) => {
+                    if (aFeature === null) return null;
+                    if (aFeature.optional === true) return null;
+                    else {
+                        var comma = key < primaryFeatures.length - 1 ? ", " : "";
+                        return (
+                            <span>
+                                {aFeature.name}
+                                {comma}
+                            </span>
+                        );
+                    }
+                });
+    
+                var slots = [];
+                if (this.state.theClass.levels[maxClassLvl] && this.state.theClass.levels[maxClassLvl].slots){
+                    for (var slotIndex = 1; slotIndex <= this.state.theClass.levels[maxClassLvl].slots.length; slotIndex++) {
+                        if (this.state.theClass.levels[lvlIndex].slots && this.state.theClass.levels[lvlIndex].slots[slotIndex]) {
+                            slots.push(<td key={slotIndex}>{this.state.theClass.levels[lvlIndex].slots[slotIndex]}</td>);
+                        } else {
+                            slots.push(<td key={slotIndex}>-</td>);
+                        }
+                    }
                 }
-            });
-
-            console.log(this.state.theClass.levels)
-            var slots = [];
-            for (var slotIndex = 1; slotIndex <= this.state.theClass.levels[maxClassLvl].slots.length; slotIndex++) {
-                if (this.state.theClass.levels[lvlIndex].slots[slotIndex]) {
-                    slots.push(<td key={slotIndex}>{this.state.theClass.levels[lvlIndex].slots[slotIndex]}</td>);
-                } else {
-                    slots.push(<td key={slotIndex}>-</td>);
-                }
+                rows.push(
+                    <tr key={lvlIndex}>
+                        <td>
+                            <OrdinalSuffix num={lvlIndex} />
+                        </td>
+                        <td>{features}</td>
+                        {slots}
+                    </tr>
+                );
             }
-            rows.push(
-                <tr key={lvlIndex}>
-                    <td>
-                        <OrdinalSuffix num={lvlIndex} />
-                    </td>
-                    <td>{features}</td>
-                    {slots}
-                </tr>
-            );
+            
         }
         var slotHeaders = [];
-        for (var index = 1; index <= this.state.theClass.levels[maxClassLvl].slots.length; index++) {
-            slotHeaders.push(
-                <th>
-                    <OrdinalSuffix num={index} />
-                </th>
-            );
+        if (this.state.theClass.levels[maxClassLvl] && this.state.theClass.levels[maxClassLvl].slots){
+            for (var index = 1; index <= this.state.theClass.levels[maxClassLvl].slots.length; index++) {
+                slotHeaders.push(
+                    <th>
+                        <OrdinalSuffix num={index} />
+                    </th>
+                );
+            }
         }
 
         return (
