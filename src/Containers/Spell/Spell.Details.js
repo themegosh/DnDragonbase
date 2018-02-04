@@ -3,7 +3,9 @@ import PrettyObj from "../../Components/PrettyObj";
 import ThingText from "../../Components/ThingText";
 import Compendium from "../../Helpers/Compendium";
 
-class Spell extends Component {
+import './Spell.Details.css';
+
+class SpellDetails extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -41,7 +43,7 @@ class Spell extends Component {
 
         return (
             <div className="container">
-                <div className="Spell">
+                <div className="spell-details">
                     <h1>{this.state.spell.name}</h1>
                     <hr /> {spellStats}
                     <hr />
@@ -53,4 +55,4 @@ class Spell extends Component {
     }
 }
 
-export default Spell;
+export default SpellDetails;

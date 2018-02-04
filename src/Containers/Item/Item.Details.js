@@ -4,38 +4,40 @@ import ModifierText from "../../Components/ModifierText";
 import PrettyObj from "../../Components/PrettyObj";
 import Compendium from "../../Helpers/Compendium";
 
-class Feat extends Component {
+import './Item.Details.css';
+
+class ItemDetails extends Component {
     constructor(props) {
         super();
         this.state = {
-            feat: {}
+            item: {}
         };
     }
 
-    getFeat(name) {
-        Compendium.Feats.forEach(aFeat => {
-            if (aFeat.name === name) {
-                this.setState({ feat: aFeat });
+    getItem(name) {
+        Compendium.Items.forEach(anItem => {
+            if (anItem.name === name) {
+                this.setState({ item: anItem });
             }
         });
     }
 
     componentWillMount() {
-        this.getFeat(this.props.match.params.name);
+        this.getItem(this.props.match.params.name);
     }
 
     componentWillReceiveProps(props) {
-        this.getFeat(props.match.params.name);
+        this.getItem(props.match.params.name);
     }
 
     render() {
-        let featStats = Object.keys(this.state.feat).map(key => {
+        let itemStats = Object.keys(this.state.item).map(key => {
             if (key !== "name" && key !== "text" && key !== "modifier")
                 return (
-                    <div key={key}>
+                    <p key={key}>
                         <strong className="capitalize">{key}:</strong>
-                        {this.state.feat[key]}
-                    </div>
+                        {this.state.item[key]}
+                    </p>
                 );
             else return null;
         });
@@ -43,20 +45,19 @@ class Feat extends Component {
         return (
             <div>
                 <div className="container">
-                    <div className="feat">
-                        <h1>{this.state.feat.name}</h1>
-                        <hr /> {featStats}
+                    <div className="item-details">
+                        <h1>{this.state.item.name}</h1>
+                        <hr /> {itemStats}
+                        <ModifierText modifier={this.state.item.modifier} />
                         <hr />
-                        <ThingText text={this.state.feat.text} />
-                        <hr />
-                        <ModifierText modifier={this.state.feat.modifier} />
+                        <ThingText text={this.state.item.text} />
                         <hr />
                     </div>
                 </div>
-                <PrettyObj {...this.state.feat} />
+                <PrettyObj {...this.state.item} />
             </div>
         );
     }
 }
 
-export default Feat;
+export default ItemDetails;

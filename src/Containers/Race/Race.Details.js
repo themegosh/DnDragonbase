@@ -4,7 +4,9 @@ import TraitText from "../../Components/TraitText";
 import PrettyObj from "../../Components/PrettyObj";
 import Compendium from "../../Helpers/Compendium";
 
-class Race extends Component {
+import './Race.Details.css';
+
+class RaceDetails extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -44,7 +46,7 @@ class Race extends Component {
         return (
             <div>
                 <div className="container">
-                    <div className="race">
+                    <div className="race-details">
                         <h1>{this.state.race.name}</h1>
                         <hr /> {raceInfo}
                         <hr />
@@ -59,4 +61,4 @@ class Race extends Component {
     }
 }
 
-export default Race;
+export default RaceDetails;

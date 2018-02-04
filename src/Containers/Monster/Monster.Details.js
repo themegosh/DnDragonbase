@@ -5,7 +5,9 @@ import ActionText from "../../Components/ActionText";
 import PrettyObj from "../../Components/PrettyObj";
 import Compendium from "../../Helpers/Compendium";
 
-class Monster extends Component {
+import './Monster.Details.css';
+
+class MonsterDetails extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -68,4 +70,4 @@ class Monster extends Component {
     }
 }
 
-export default Monster;
+export default MonsterDetails;
